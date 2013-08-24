@@ -48,7 +48,7 @@ Other Options
 Example
 -------
 
-.. code-block:: bash
+``` bash
     tmp # cat mount.sh
     #!/bin/bash
     mount -t nfs -o rw 192.168.1.3:/Daten /mnt/back_server
@@ -60,6 +60,7 @@ Example
     exit $?
 
     tmp # demandfs.py -o backdir=/mnt/back_server,mountscript=/tmp/mount.sh,umountscript=/tmp/unmount.sh,timeout=60 /mnt/server
+```
 
 The both scripts in /tmp will do the mount and unmount of the source, a NFS 
 share in this case. They will mount it to /mnt/server_back.  
