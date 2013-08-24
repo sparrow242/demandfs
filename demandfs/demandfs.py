@@ -103,10 +103,10 @@ class DemandFS(fuse.Fuse):
         
     def fsdestroy(self, *args):
         verbose("fsdestroy called with args:" % args)
+        self.umount_backdir()
         self.timer.run_thread = False
         self.timer.timer_event.set()
         
-
     def mount_backdir(self):
         """
         Be sure you have acquired the STATE_LOCK before call this!
@@ -150,13 +150,14 @@ class DemandFS(fuse.Fuse):
         > 0 we expect the backdir is still available, < 0 the backdir is 
         gone (but not mounted as planned, what is 0)
         """
-        ret = self.run_script(self.umountscript)
-        if ret == 0:
-            self.backdir_is_mounted = False
-        else:
-            # TODO: Log failure
-            print "Can't unmount the backdir"
-            
+        if self.backdir_is_mounted:
+            ret = self.run_script(self.umountscript)
+            if ret == 0:
+                self.backdir_is_mounted = False
+            else:
+                # TODO: Log failure
+                print "Can't unmount the backdir"
+
 
     # Methods for filesystem-operations:
 
