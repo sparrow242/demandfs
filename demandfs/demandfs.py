@@ -397,7 +397,6 @@ if __name__ == "__main__":
     if isinstance(dfs.verbose, str) and dfs.verbose.lower() == "true":
         dfs.verbose = True
         VERBOSE = True
-    print dfs.verbose, type(dfs.verbose)
     dfs.timeout = int(dfs.timeout)
     BACKDIR = dfs.backdir
     dfs.main()
