@@ -38,12 +38,14 @@ own mountpoint and this directory.
 * **timeout**: Time in secods after last avitivty, DemandFS will try to call 
 the unmountscript whe the timeout is reached.  
 DemandFS checks the idle-steate of the FS only every 30 seconds, so it can 
-take this time longer before the unmount is called. 
+take this time longer before the unmount is called.
+* **verbose**: Use *verbose=true* to get verbose output. (You shoul also use 
+the *-f* option to run DemandFS in foreground) 
 
 Other Options
 -------------
 
-* **-f*: will run DemandFS in the foreground (might be easier to find problems)
+* **-f**: will run DemandFS in the foreground (might be easier to find problems)
 
 Example
 -------
