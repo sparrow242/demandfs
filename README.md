@@ -5,7 +5,7 @@ What is DemandFS?
 -----------------
 
 DemandFS is a filesystem-layer for unix-like systems using FUSE.  
-Like autofs and autmount it shall execute a mount if a specific direcotry 
+Like autofs and automount it shall execute a mount if a specific direcotry 
 receives a filesystem request and do also a unmount after the filesystem was 
 idle for some time. Additional it has following features:
 
@@ -19,10 +19,10 @@ How does it work?
 
 DemandFS is *not* a daemon - it uses FUSE to be mounted on a specific directory. 
 Its main part is a layer between the **mountpoint** where it was mounted 
-and the **backdir**, which has the data. Every call for the mountpoint will 
+and the **backdir**, which holds the data. Every call for the mountpoint will 
 be mapped to the backdir.  
 If the backdir is not mounted, the request will fire a trigger which 
-starts a script specified as **mountscript**. If this scripts return with 0 
+starts a script specified as **mountscript**. If this scripts returns with 0 
 as returncode, the request will be mapped to backdir.  
 After the filesystem is idle for some seconds, specified as **timeout**,  
 DemandFS will call the **unmountscript** to unmount the backdir.
@@ -36,10 +36,10 @@ own mountpoint and this directory.
 * **mountscript**: Path to the script which is called to mount the backdir.
 * **umountscript**: Path the script which unmounts the backdir
 * **timeout**: Time in secods after last avitivty, DemandFS will try to call 
-the unmountscript whe the timeout is reached.  
-DemandFS checks the idle-steate of the FS only every 30 seconds, so it can 
+the unmountscript when the timeout has reached.  
+DemandFS checks the idle-state of the FS only every 30 seconds, so it can 
 take this time longer before the unmount is called.
-* **verbose**: Use *verbose=true* to get verbose output. (You shoul also use 
+* **verbose**: Use *verbose=true* to get verbose output. (You should also use 
 the *-f* option to run DemandFS in foreground) 
 
 Other Options

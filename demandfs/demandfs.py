@@ -110,7 +110,7 @@ class DemandFS(fuse.Fuse):
     def mount_backdir(self):
         """
         Be sure you have acquired the STATE_LOCK before call this!
-        Call the script to mount the backdir. If the script retuns a value
+        Calls the script to mount the backdir. If the script retuns a value
         != 0 we expect the backdir is not available.
         """
         ret = self.run_script(self.mountscript)
@@ -146,7 +146,7 @@ class DemandFS(fuse.Fuse):
     def umount_backdir(self):
         """
         Be sure you have acquired the STATE_LOCK before call this!
-        Called the script to mount the backdir. If the script retuns a value
+        Calls the script to mount the backdir. If the script retuns a value
         > 0 we expect the backdir is still available, < 0 the backdir is 
         gone (but not mounted as planned, what is 0)
         """
