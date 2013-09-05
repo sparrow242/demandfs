@@ -163,7 +163,11 @@ class DemandFS(fuse.Fuse):
 
     def getattr(self, path):
         verbose("gettattr path: %s" % path)
-        if self.trigger_activity():
+        # don't call the mountscript if it is the root-dir.
+        # a "ls" in the parent dir would trigger the mount
+        if path == "/":
+            return os.lstat(self.backdir + path)
+        elif self.trigger_activity():
             return os.lstat(self.backdir + path)
         else:
             return -errno.EIO
